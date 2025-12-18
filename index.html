@@ -196,23 +196,39 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background: var(--console-bg);
-        border-top: 3px solid var(--accent);
-        padding: 20px;
+        background: linear-gradient(135deg, #2a1f18 0%, #1a1410 50%, #2a1f18 100%);
+        border-top: 6px solid #3d2e1f;
+        border-bottom: 3px solid #0a0806;
+        padding: 24px 20px 20px 20px;
         z-index: 1000;
         transform: translateY(100%);
         transition: transform 0.4s ease;
+        box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.8),
+                    inset 0 2px 0 rgba(255, 255, 255, 0.05),
+                    inset 0 -2px 8px rgba(0, 0, 0, 0.6);
     }
     .dub-fx-unit.active {
         transform: translateY(0);
+    }
+    .dub-fx-unit::before {
+        content: "LATENT ARK DUBWISE HARMONY";
+        position: absolute;
+        top: 6px;
+        left: 20px;
+        font-family: var(--mono);
+        font-size: 0.55rem;
+        letter-spacing: 2px;
+        color: var(--gold);
+        opacity: 0.4;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
     }
     .fx-toggle {
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background: var(--accent);
+        background: linear-gradient(135deg, var(--accent) 0%, #c89933 100%);
         color: var(--bg);
-        border: none;
+        border: 2px solid #3d2e1f;
         padding: 12px 20px;
         font-family: var(--mono);
         font-size: 0.75rem;
@@ -220,76 +236,149 @@
         cursor: pointer;
         z-index: 1001;
         transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     }
     .fx-toggle:hover {
-        background: var(--gold);
+        background: linear-gradient(135deg, var(--gold) 0%, var(--accent) 100%);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
     .fx-controls {
-        max-width: 1000px;
+        max-width: 1200px;
         margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 20px;
-        align-items: start;
+        display: flex;
+        gap: 16px;
+        align-items: stretch;
+        flex-wrap: wrap;
     }
     .fx-control {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 12px;
+        padding: 16px;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(212, 168, 73, 0.2);
+        border-radius: 4px;
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5),
+                    0 1px 0 rgba(255, 255, 255, 0.05);
+        min-width: 140px;
+        flex: 1;
+    }
+    .fx-control.delay-section {
+        background: rgba(61, 46, 31, 0.3);
+        border-color: rgba(212, 168, 73, 0.3);
+        flex: 2;
+        min-width: 280px;
     }
     .fx-label {
         font-family: var(--mono);
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         color: var(--gold);
-        letter-spacing: 1px;
+        letter-spacing: 1.5px;
         text-transform: uppercase;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+        padding-bottom: 4px;
+        border-bottom: 1px solid rgba(212, 168, 73, 0.2);
+    }
+    .delay-label {
+        font-size: 0.7rem;
+        color: var(--highlight);
+        margin-bottom: 8px;
+        letter-spacing: 2px;
     }
     .fx-slider {
         width: 100%;
-        height: 4px;
-        background: var(--bg);
+        height: 8px;
+        background: linear-gradient(90deg, #1a1410 0%, #2a1f18 50%, #1a1410 100%);
         outline: none;
         -webkit-appearance: none;
+        appearance: none;
+        border: 2px solid #3d2e1f;
+        border-radius: 3px;
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8),
+                    0 1px 0 rgba(255, 255, 255, 0.05);
+        cursor: pointer;
     }
     .fx-slider::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: 16px;
-        height: 16px;
-        background: var(--accent);
-        cursor: pointer;
-        border-radius: 50%;
+        width: 24px;
+        height: 32px;
+        background: linear-gradient(180deg, var(--accent) 0%, #c89933 50%, var(--accent) 100%);
+        cursor: grab;
+        border-radius: 3px;
+        border: 2px solid #3d2e1f;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    }
+    .fx-slider::-webkit-slider-thumb:active {
+        cursor: grabbing;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
     .fx-slider::-moz-range-thumb {
-        width: 16px;
-        height: 16px;
-        background: var(--accent);
-        cursor: pointer;
-        border-radius: 50%;
-        border: none;
+        width: 24px;
+        height: 32px;
+        background: linear-gradient(180deg, var(--accent) 0%, #c89933 50%, var(--accent) 100%);
+        cursor: grab;
+        border-radius: 3px;
+        border: 2px solid #3d2e1f;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    .fx-slider::-moz-range-thumb:active {
+        cursor: grabbing;
     }
     .fx-button {
-        background: transparent;
-        border: 1px solid var(--accent);
+        background: linear-gradient(135deg, transparent 0%, rgba(61, 46, 31, 0.4) 100%);
+        border: 2px solid var(--accent);
         color: var(--gold);
-        padding: 8px 16px;
+        padding: 10px 16px;
         font-family: var(--mono);
         font-size: 0.7rem;
         cursor: pointer;
         transition: all 0.3s ease;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                    0 2px 4px rgba(0, 0, 0, 0.4);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+        letter-spacing: 0.5px;
     }
     .fx-button:hover {
-        background: var(--accent);
+        background: linear-gradient(135deg, var(--accent) 0%, #c89933 100%);
         color: var(--bg);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                    0 4px 8px rgba(0, 0, 0, 0.5);
     }
     .fx-button.active {
-        background: var(--accent);
+        background: linear-gradient(135deg, var(--accent) 0%, #c89933 100%);
         color: var(--bg);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4),
+                    0 1px 0 rgba(255, 255, 255, 0.2);
     }
     .fx-value {
         font-family: var(--mono);
-        font-size: 0.65rem;
-        color: var(--text);
-        opacity: 0.7;
+        font-size: 0.75rem;
+        color: var(--gold);
+        text-align: center;
+        padding: 4px;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 2px;
+        border: 1px solid rgba(212, 168, 73, 0.3);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+        letter-spacing: 1px;
+    }
+    .delay-controls {
+        display: flex;
+        gap: 12px;
+        margin-top: 8px;
+    }
+    .delay-channel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
     }
 
     /* SIDE TOGGLE */
@@ -752,33 +841,59 @@
 <div class="dub-fx-unit" id="dubFxUnit">
     <div class="fx-controls">
         <div class="fx-control">
-            <label class="fx-label">Play/Stop</label>
+            <label class="fx-label">Transport</label>
             <button class="fx-button" id="playStop">▶ PLAY</button>
-        </div>
-
-        <div class="fx-control">
-            <label class="fx-label">Delay</label>
-            <input type="range" class="fx-slider" id="delaySlider" min="0" max="100" value="0">
-            <span class="fx-value" id="delayValue">0%</span>
-        </div>
-
-        <div class="fx-control">
-            <label class="fx-label">Speed</label>
-            <input type="range" class="fx-slider" id="speedSlider" min="50" max="150" value="100">
-            <span class="fx-value" id="speedValue">100%</span>
-        </div>
-
-        <div class="fx-control">
-            <label class="fx-label">Reverb</label>
-            <input type="range" class="fx-slider" id="reverbSlider" min="0" max="100" value="0">
-            <span class="fx-value" id="reverbValue">0%</span>
-        </div>
-
-        <div class="fx-control">
-            <label class="fx-label">Track</label>
-            <select class="fx-button" id="trackSelect" style="width: 100%;">
-                <option value="">Select Track...</option>
+            <select class="fx-button" id="trackSelect" style="width: 100%; margin-top: 8px;">
+                <option value="">Select Dub Plate...</option>
             </select>
+        </div>
+
+        <div class="fx-control delay-section">
+            <label class="fx-label delay-label">Echo Chamber 1</label>
+            <div class="delay-controls">
+                <div class="delay-channel">
+                    <label class="fx-label" style="font-size: 0.55rem;">Time</label>
+                    <input type="range" class="fx-slider" id="delay1Slider" min="0" max="100" value="0">
+                    <span class="fx-value" id="delay1Value">0%</span>
+                </div>
+                <div class="delay-channel">
+                    <label class="fx-label" style="font-size: 0.55rem;">Feedback</label>
+                    <input type="range" class="fx-slider" id="feedback1Slider" min="0" max="100" value="30">
+                    <span class="fx-value" id="feedback1Value">30%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="fx-control delay-section">
+            <label class="fx-label delay-label">Echo Chamber 2</label>
+            <div class="delay-controls">
+                <div class="delay-channel">
+                    <label class="fx-label" style="font-size: 0.55rem;">Time</label>
+                    <input type="range" class="fx-slider" id="delay2Slider" min="0" max="100" value="0">
+                    <span class="fx-value" id="delay2Value">0%</span>
+                </div>
+                <div class="delay-channel">
+                    <label class="fx-label" style="font-size: 0.55rem;">Feedback</label>
+                    <input type="range" class="fx-slider" id="feedback2Slider" min="0" max="100" value="40">
+                    <span class="fx-value" id="feedback2Value">40%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="fx-control delay-section">
+            <label class="fx-label delay-label">Tempo/EFX</label>
+            <div class="delay-controls">
+                <div class="delay-channel">
+                    <label class="fx-label" style="font-size: 0.55rem;">Speed</label>
+                    <input type="range" class="fx-slider" id="speedSlider" min="50" max="150" value="100">
+                    <span class="fx-value" id="speedValue">100%</span>
+                </div>
+                <div class="delay-channel">
+                    <label class="fx-label" style="font-size: 0.55rem;">Spring Reverb</label>
+                    <input type="range" class="fx-slider" id="reverbSlider" min="0" max="100" value="0">
+                    <span class="fx-value" id="reverbValue">0%</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -1297,9 +1412,16 @@
     // Web Audio API setup
     let audioContext = null;
     let sourceNode = null;
-    let delayNode = null;
-    let feedbackGain = null;
-    let wetGain = null;
+
+    // Dual delay lines (Echo Chamber 1 & 2)
+    let delay1Node = null;
+    let feedback1Gain = null;
+    let wet1Gain = null;
+
+    let delay2Node = null;
+    let feedback2Gain = null;
+    let wet2Gain = null;
+
     let dryGain = null;
     let reverbNode = null;
     let reverbGain = null;
@@ -1311,12 +1433,24 @@
 
     // Get controls
     const playStopBtn = document.getElementById('playStop');
-    const delaySlider = document.getElementById('delaySlider');
-    const speedSlider = document.getElementById('speedSlider');
-    const reverbSlider = document.getElementById('reverbSlider');
     const trackSelect = document.getElementById('trackSelect');
-    const delayValue = document.getElementById('delayValue');
+
+    // Delay 1 controls
+    const delay1Slider = document.getElementById('delay1Slider');
+    const delay1Value = document.getElementById('delay1Value');
+    const feedback1Slider = document.getElementById('feedback1Slider');
+    const feedback1Value = document.getElementById('feedback1Value');
+
+    // Delay 2 controls
+    const delay2Slider = document.getElementById('delay2Slider');
+    const delay2Value = document.getElementById('delay2Value');
+    const feedback2Slider = document.getElementById('feedback2Slider');
+    const feedback2Value = document.getElementById('feedback2Value');
+
+    // Other controls
+    const speedSlider = document.getElementById('speedSlider');
     const speedValue = document.getElementById('speedValue');
+    const reverbSlider = document.getElementById('reverbSlider');
     const reverbValue = document.getElementById('reverbValue');
 
     // Available tracks - dynamically discovered from tracks directory
@@ -1384,16 +1518,27 @@
 
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-        // Create delay effect (tape delay style)
-        delayNode = audioContext.createDelay(2.0);
-        delayNode.delayTime.value = 0;
+        // Create DELAY 1 (Echo Chamber 1)
+        delay1Node = audioContext.createDelay(2.0);
+        delay1Node.delayTime.value = 0;
 
-        feedbackGain = audioContext.createGain();
-        feedbackGain.gain.value = 0;
+        feedback1Gain = audioContext.createGain();
+        feedback1Gain.gain.value = 0.3;
 
-        wetGain = audioContext.createGain();
-        wetGain.gain.value = 0;
+        wet1Gain = audioContext.createGain();
+        wet1Gain.gain.value = 0;
 
+        // Create DELAY 2 (Echo Chamber 2)
+        delay2Node = audioContext.createDelay(2.0);
+        delay2Node.delayTime.value = 0;
+
+        feedback2Gain = audioContext.createGain();
+        feedback2Gain.gain.value = 0.4;
+
+        wet2Gain = audioContext.createGain();
+        wet2Gain.gain.value = 0;
+
+        // Dry signal
         dryGain = audioContext.createGain();
         dryGain.gain.value = 1.0;
 
@@ -1404,11 +1549,17 @@
 
         generateReverbIR();
 
-        // Wire up delay feedback loop
-        delayNode.connect(feedbackGain);
-        feedbackGain.connect(delayNode);
-        delayNode.connect(wetGain);
-        wetGain.connect(audioContext.destination);
+        // Wire up DELAY 1 feedback loop
+        delay1Node.connect(feedback1Gain);
+        feedback1Gain.connect(delay1Node);
+        delay1Node.connect(wet1Gain);
+        wet1Gain.connect(audioContext.destination);
+
+        // Wire up DELAY 2 feedback loop
+        delay2Node.connect(feedback2Gain);
+        feedback2Gain.connect(delay2Node);
+        delay2Node.connect(wet2Gain);
+        wet2Gain.connect(audioContext.destination);
 
         // Wire up dry signal
         dryGain.connect(audioContext.destination);
@@ -1458,9 +1609,10 @@
         sourceNode.buffer = currentBuffer;
         sourceNode.playbackRate.value = currentPlaybackRate;
 
-        // Connect to effects chain
+        // Connect to effects chain - dual delays in parallel
         sourceNode.connect(dryGain);
-        sourceNode.connect(delayNode);
+        sourceNode.connect(delay1Node);
+        sourceNode.connect(delay2Node);
         sourceNode.connect(reverbNode);
 
         // Start playback
@@ -1543,20 +1695,58 @@
         }
     });
 
-    // Delay control (0-100%)
-    delaySlider.addEventListener('input', (e) => {
+    // DELAY 1 Time control (0-100%)
+    delay1Slider.addEventListener('input', (e) => {
         if (!audioContext) initAudio();
 
         const value = parseInt(e.target.value);
-        delayValue.textContent = value + '%';
+        delay1Value.textContent = value + '%';
 
+        // Delay time: 0 to 0.8 seconds
         const delayTime = (value / 100) * 0.8;
-        const feedback = (value / 100) * 0.7;
         const wet = value / 100;
 
-        delayNode.delayTime.setTargetAtTime(delayTime, audioContext.currentTime, 0.01);
-        feedbackGain.gain.setTargetAtTime(feedback, audioContext.currentTime, 0.01);
-        wetGain.gain.setTargetAtTime(wet, audioContext.currentTime, 0.01);
+        delay1Node.delayTime.setTargetAtTime(delayTime, audioContext.currentTime, 0.01);
+        wet1Gain.gain.setTargetAtTime(wet, audioContext.currentTime, 0.01);
+    });
+
+    // DELAY 1 Feedback control (0-100%)
+    feedback1Slider.addEventListener('input', (e) => {
+        if (!audioContext) initAudio();
+
+        const value = parseInt(e.target.value);
+        feedback1Value.textContent = value + '%';
+
+        // Feedback: 0 to 0.85 (careful not to go too high or it will explode!)
+        const feedback = (value / 100) * 0.85;
+        feedback1Gain.gain.setTargetAtTime(feedback, audioContext.currentTime, 0.01);
+    });
+
+    // DELAY 2 Time control (0-100%)
+    delay2Slider.addEventListener('input', (e) => {
+        if (!audioContext) initAudio();
+
+        const value = parseInt(e.target.value);
+        delay2Value.textContent = value + '%';
+
+        // Delay time: 0 to 1.2 seconds (longer than delay 1 for variety)
+        const delayTime = (value / 100) * 1.2;
+        const wet = value / 100;
+
+        delay2Node.delayTime.setTargetAtTime(delayTime, audioContext.currentTime, 0.01);
+        wet2Gain.gain.setTargetAtTime(wet, audioContext.currentTime, 0.01);
+    });
+
+    // DELAY 2 Feedback control (0-100%)
+    feedback2Slider.addEventListener('input', (e) => {
+        if (!audioContext) initAudio();
+
+        const value = parseInt(e.target.value);
+        feedback2Value.textContent = value + '%';
+
+        // Feedback: 0 to 0.85
+        const feedback = (value / 100) * 0.85;
+        feedback2Gain.gain.setTargetAtTime(feedback, audioContext.currentTime, 0.01);
     });
 
     // Speed control (50-150%)
